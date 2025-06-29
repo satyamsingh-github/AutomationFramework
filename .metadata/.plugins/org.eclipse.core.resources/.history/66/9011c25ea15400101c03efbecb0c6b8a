@@ -1,0 +1,18 @@
+package pages;
+
+public class AmazonHomePage {
+    WebDriver driver;
+
+    @FindBy(id = "twotabsearchtextbox") WebElement searchBox;
+    @FindBy(id = "nav-search-submit-button") WebElement searchButton;
+
+    public AmazonHomePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public void searchProduct(String product) {
+        searchBox.sendKeys(product);
+        searchButton.click();
+    }
+}

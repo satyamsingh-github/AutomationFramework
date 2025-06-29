@@ -1,0 +1,36 @@
+package runner;
+
+@CucumberOptions(
+	    features = "src/test/resources/features",
+	    glue = {"stepDefinitions", "listeners"},
+	    plugin = {"pretty", "html:target/cucumber-report.html"},
+	    monochrome = true
+	)
+	public class TestRunner extends AbstractTestNGCucumberTests {}
+
+	TestListener.java (Extent Report):
+
+	public class TestListener implements ITestListener {
+	    ExtentReports extent = new ExtentReports();
+	    ExtentTest test;
+
+	    @Override
+	    public void onTestStart(ITestResult result) {
+	        test = extent.createTest(result.getMethod().getMethodName());
+	    }
+
+	    @Override
+	    public void onTestSuccess(ITestResult result) {
+	        test.pass("Test passed");
+	    }
+
+	    @Override
+	    public void onTestFailure(ITestResult result) {
+	        test.fail(result.getThrowable());
+	    }
+
+	    @Override
+	    public void onFinish(ITestContext context) {
+	        extent.flush();
+	    }
+	}
