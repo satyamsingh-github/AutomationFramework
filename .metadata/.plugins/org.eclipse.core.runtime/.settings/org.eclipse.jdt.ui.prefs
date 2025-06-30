@@ -1,5 +1,7 @@
 content_assist_completion_replacement_background=200,200,0
 content_assist_completion_replacement_foreground=200,0,0
+content_assist_favorite_static_members=org.testng.Assert.*
+content_assist_number_of_computers=15
 content_assist_parameters_background=52,57,61
 content_assist_parameters_foreground=238,238,238
 content_assist_proposals_background=52,57,61
@@ -83,5 +85,6 @@ semanticHighlighting.typeParameter.color=191,164,164
 semanticHighlighting.typeParameter.enabled=true
 sourceHoverBackgroundColor=68,68,68
 spelling_locale_initialized=true
+typefilter_migrated_2=true
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

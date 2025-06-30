@@ -21,6 +21,9 @@ public class AmazonHomePage {
     public void searchProduct(String product) {
         searchBox.sendKeys(product);
         System.out.println("For Github Learning");
+        
+        System.out.println("For Github Learning - from the place where");
+        
         searchButton.click();
     }
 }
