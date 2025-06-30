@@ -24,7 +24,7 @@ public class AmazonHomePage {
         
         System.out.println("For Github Learning - from the place where");
         
-        System.out.println("changed for auto execution");
+        System.out.println("changed code in develop branch");
         
         searchButton.click();
     }
