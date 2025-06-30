@@ -20,6 +20,7 @@ public class AmazonHomePage {
 
     public void searchProduct(String product) {
         searchBox.sendKeys(product);
+        System.out.println("For Github Learning");
         searchButton.click();
     }
 }
