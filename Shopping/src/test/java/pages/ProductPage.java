@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
 import utils.WaitUtils;
 
 
@@ -19,9 +20,12 @@ public class ProductPage {
     private WebElement newCondition;
     @FindBy(xpath = "//span[contains(text(),'Used')]")
     private WebElement usedCondition;
-    @FindBy(xpath = " (//h2/span)[4]")
+    @FindBy(xpath = "(//h2/span)[4]")
     private WebElement productDescription;
- 
+    
+    
+    @FindBy(xpath = "//h2[text()=\"Results\"]")
+    private WebElement results;
 
     @FindBy(name = "submit.addToCart")
     private WebElement addToCartButton;
@@ -45,6 +49,9 @@ public class ProductPage {
         PageFactory.initElements(driver, this);
     }
 
+    
+
+
     public void productCondition(String condition) {
         if ("New".equalsIgnoreCase(condition)) {
             newCondition.click();
@@ -57,17 +64,19 @@ public class ProductPage {
 
     public void verifyProductDisplayed(String product) {
 
-        WaitUtils.waitForVisibility(driver, productDescription);
-        Assert.assertTrue(productDescription.getText().contains(product), "Product description does not contain expected text: " + product);
+        WaitUtils.waitForVisibility(driver, results);
+        Assert.assertTrue(driver.getTitle().toLowerCase().contains(product.toLowerCase()));
+       
     }
 
     public void addTocart() {
+        WaitUtils.waitForVisibility(driver, addToCartButton);
         addToCartButton.click();
     }
 
     
     public void clickOnCartIcon() {
-        WaitUtils.waitForVisibility(driver, GoToCart);
+        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", GoToCart);
         GoToCart.click();
     }
 

@@ -5,14 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import utils.WaitUtils;
 
 public class AmazonHomePage {
     WebDriver driver;
-     @FindBy(xpath = "//button") WebElement continueButton;
+    @FindBy(xpath = "//button") WebElement continueButton;
+    @FindBy(id = "sp-cc-accept") WebElement cookiesPreference;
 
     @FindBy(id = "twotabsearchtextbox") WebElement searchBox;
     @FindBy(id = "nav-search-submit-button") WebElement searchButton;
@@ -28,9 +26,14 @@ public class AmazonHomePage {
     }
 
     public void searchProduct(String product) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(searchBox)).sendKeys(product);
-        wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
+
+        WaitUtils.waitForVisibility(driver, searchBox);
+        searchBox.sendKeys(product);
+
+        WaitUtils.waitForVisibility(driver, searchButton);
+        searchButton.click();
+
+     
     }
 
     public void continueShopping() {
@@ -38,10 +41,32 @@ public class AmazonHomePage {
         if (continueButton.isDisplayed()) {
             continueButton.click();
         }
-
+    
         else {
             System.out.println("Continue button is not displayed.");
             return;
         }
     }
+
+
+
+    public void acceptCookies() {
+        try {
+            if (cookiesPreference.isDisplayed()) {
+            cookiesPreference.click();
+            System.out.println("Cookies popup handled.");
+        }
+        else {
+            System.out.println("Cookies popup not displayed.");
+            return;
+        }
+        } catch (Exception e) {
+            System.out.println("Cookies popup not displayed.");
+        }
+        
+        
+        
+    }
+
+
 }

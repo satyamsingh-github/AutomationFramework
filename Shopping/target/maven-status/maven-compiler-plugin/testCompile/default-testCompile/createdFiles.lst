@@ -1,3 +1,7 @@
 pages\AmazonHomePage.class
+pages\ProductPage.class
 stepDefinition\SearchSteps.class
+listeners\TestListener.class
+stepDefinition\verifications.class
+runner\TestRunner.class
 Common\BrokenLinks.class

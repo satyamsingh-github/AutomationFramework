@@ -1,10 +1,9 @@
 package stepDefinition;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -13,7 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.AmazonHomePage;
 import pages.ProductPage;
-import utils.DriverFactory;
+import utils.Drivers;
 import utils.ExcelReader;
 import utils.TestDataProvider;
 
@@ -22,6 +21,7 @@ public class SearchSteps {
     WebDriver driver;
     AmazonHomePage amazonHomePage;
     ProductPage productPage;
+    
     static List<String[]> testData;
 
     public String website;
@@ -55,19 +55,22 @@ public class SearchSteps {
 
 
    @Given("User is on Amazon {string}")
-    public void user_is_on_amazon(String site) throws InterruptedException {
+    public void user_is_on_amazon(String site) throws InterruptedException, IOException {
         
         if (site.equalsIgnoreCase("fromExcel")) {
         site = website;
         }
 
-        driver = DriverFactory.getDriver();
+        driver = Drivers.initializeDriver();
         driver.get(site);
         amazonHomePage = new AmazonHomePage(driver);
 
         Thread.sleep(4000);
 
         amazonHomePage.continueShopping();
+        Thread.sleep(4000);
+        
+        amazonHomePage.acceptCookies();
 
 
     }
@@ -83,20 +86,24 @@ public class SearchSteps {
 
     @Then("Results for {string} are displayed")
     public void results_for_are_displayed(String item) {
+
+
          
         if (item.equalsIgnoreCase("fromExcel")) {
         item = product;
         }
+        productPage = new ProductPage(driver);
+        productPage.verifyProductDisplayed(item);
 
-        Assert.assertTrue(driver.getTitle().toLowerCase().contains(item.toLowerCase()));
+    
     }
 
 
     @And("User Clicks on Add to Cart button")
     public void user_clicks_on_add_to_cart_button() {
 
-        driver = DriverFactory.getDriver();
         productPage = new ProductPage(driver);
+
         productPage.addTocart();
     }
 
@@ -106,7 +113,7 @@ public class SearchSteps {
         if (item.equalsIgnoreCase("fromExcel")) {
         item = product;
         }
-
+        productPage = new ProductPage(driver);
         productPage.clickOnCartIcon();
 
         productPage.proceedtoCheckout();
@@ -114,7 +121,7 @@ public class SearchSteps {
     } 
     @After
     public void tearDown() {
-        DriverFactory.quitDriver();
+        Drivers.quitDriver();
 }  
     }
 
