@@ -20,7 +20,17 @@
 
 Feature: Search functionality on Amazon
 
-  Scenario: Search for Apple MacBook
-    Given User is on Amazon homepage
-    When User searches for Apple MacBook
-    Then Results for Apple MacBook are displayed
+  Scenario Outline: Search for Product on Amazon
+    Given User is on Amazon "<website>"
+    #Given All links on the result page are valid
+    When User searches for "<product>"
+    Then Results for "<product>" are displayed
+    And User Clicks on Add to Cart button
+    Then "<product>" is added to cart 
+
+    Examples:
+      | website   | product   | 
+      | fromExcel | fromExcel | 
+      | fromExcel | fromExcel | 
+      | fromExcel | fromExcel | 
+

@@ -1,0 +1,5 @@
+# Created at 2025-07-12T18:50:02.140
+Boot Manifest-JAR contains absolute paths in classpath 'G:\VSCode\AutomationFramework\Shopping\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

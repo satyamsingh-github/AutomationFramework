@@ -62,8 +62,22 @@
 		    <version>2.0.17</version>
 		    <scope>test</scope>
 		</dependency>
-    </dependencies>
+    
 
+        <!-- Apache POI - core library for reading/writing Excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+
+        <!-- Apache POI - for .xlsx (XSSF) file support -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <!-- Compiler Plugin -->

@@ -1,0 +1,3 @@
+pages\AmazonHomePage.class
+stepDefinition\SearchSteps.class
+Common\BrokenLinks.class
