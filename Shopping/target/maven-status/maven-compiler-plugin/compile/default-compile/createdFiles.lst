@@ -1,6 +1,7 @@
 utils\Drivers.class
+utils\CookiesHandler.class
 utils\ExcelReader.class
-utils\JsClickHelper.class
 utils\DriverFactory.class
+utils\JsClickHelper.class
 utils\TestDataProvider.class
 utils\WaitUtils.class

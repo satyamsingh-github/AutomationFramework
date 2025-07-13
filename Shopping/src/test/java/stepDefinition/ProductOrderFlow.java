@@ -17,7 +17,7 @@ import utils.ExcelReader;
 import utils.TestDataProvider;
 
 
-public class SearchSteps {
+public class ProductOrderFlow {
     WebDriver driver;
     AmazonHomePage amazonHomePage;
     ProductPage productPage;
@@ -29,7 +29,7 @@ public class SearchSteps {
     public String condition;
 
 
-    public SearchSteps() {
+    public ProductOrderFlow() {
         if (testData == null) {
             testData = ExcelReader.getExcelData(
                 "G:\\VSCode\\AutomationFramework\\Shopping\\src\\test\\resources\\features\\data\\testData.xlsx",
@@ -65,11 +65,7 @@ public class SearchSteps {
         driver.get(site);
         amazonHomePage = new AmazonHomePage(driver);
 
-        Thread.sleep(4000);
-
         amazonHomePage.continueShopping();
-        Thread.sleep(4000);
-        
         amazonHomePage.acceptCookies();
 
 
